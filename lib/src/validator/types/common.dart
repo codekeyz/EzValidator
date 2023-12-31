@@ -4,10 +4,7 @@ extension CommonValidatorExtensions<T> on EzValidator<T> {
   /// add a validation to check if the value is null or empty
   /// [message] is the message to return if the validation fails
   EzValidator<T> required([String? message]) => addValidation(
-        (v, [_]) => v == null || v.isNullOrEmpty
-            ? message ?? EzValidator.globalLocale.required(label)
-            : null,
-      );
+      (v, [_]) => v == null || v.isNullOrEmpty ? message ?? EzValidator.globalLocale.required(label) : null);
 
   /// add a validation to check if the value is of type [type]
   /// [message] is the message to return if the validation fails
@@ -19,9 +16,8 @@ extension CommonValidatorExtensions<T> on EzValidator<T> {
           if (v.runtimeType == double || v.runtimeType == int && type == num) {
             return null;
           }
-          return v.runtimeType == type
-              ? null
-              : message ?? EzValidator.globalLocale.isTypeOf(type, label);
+
+          return v.runtimeType == type ? null : message ?? EzValidator.globalLocale.isTypeOf(type, label);
         },
       );
 
@@ -30,23 +26,16 @@ extension CommonValidatorExtensions<T> on EzValidator<T> {
   EzValidator<T> minLength(int minLength, [String? message]) => addValidation(
         (v, [_]) {
           if (v is String) {
-            return v.length < minLength
-                ? message ??
-                    EzValidator.globalLocale.minLength(v, minLength, label)
-                : null;
+            return v.length < minLength ? message ?? EzValidator.globalLocale.minLength(v, minLength, label) : null;
           }
           if (v is List) {
             return v.length < minLength
-                ? message ??
-                    EzValidator.globalLocale
-                        .minLength(v.toString(), minLength, label)
+                ? message ?? EzValidator.globalLocale.minLength(v.toString(), minLength, label)
                 : null;
           }
           if (v is Map) {
             return v.length < minLength
-                ? message ??
-                    EzValidator.globalLocale
-                        .minLength(v.toString(), minLength, label)
+                ? message ?? EzValidator.globalLocale.minLength(v.toString(), minLength, label)
                 : null;
           }
           return null;
@@ -55,35 +44,26 @@ extension CommonValidatorExtensions<T> on EzValidator<T> {
 
   /// add a validation to check if the value is less than [maxLength]
   /// [message] is the message to return if the validation fails
-  EzValidator<T> maxLength(int maxLength, [String? message]) =>
-      addValidation((v, [_]) {
+  EzValidator<T> maxLength(int maxLength, [String? message]) => addValidation((v, [_]) {
         if (v is String) {
-          return v.length > maxLength
-              ? message ??
-                  EzValidator.globalLocale.maxLength(v, maxLength, label)
-              : null;
+          return v.length > maxLength ? message ?? EzValidator.globalLocale.maxLength(v, maxLength, label) : null;
         }
         if (v is List) {
           return v.length > maxLength
-              ? message ??
-                  EzValidator.globalLocale
-                      .maxLength(v.toString(), maxLength, label)
+              ? message ?? EzValidator.globalLocale.maxLength(v.toString(), maxLength, label)
               : null;
         }
         if (v is Map) {
           return v.length > maxLength
-              ? message ??
-                  EzValidator.globalLocale
-                      .maxLength(v.toString(), maxLength, label)
+              ? message ?? EzValidator.globalLocale.maxLength(v.toString(), maxLength, label)
               : null;
         }
         return null;
       });
 
   /// add a custom validation
-  EzValidator<T> addMethod(bool Function(T? v) validWhen, [String? message]) =>
-      addValidation(
-          (v, [_]) => validWhen(v) ? null : message ?? 'Invalid Condition');
+  EzValidator<T> addMethod(bool Function(dynamic v) validWhen, [String? message]) =>
+      addValidation((v, [_]) => validWhen(v) ? null : message ?? 'Invalid Condition');
 
   /// adjust the validation based on the value of another field
   /// [key] is the name of the field to compare against
@@ -97,13 +77,13 @@ extension CommonValidatorExtensions<T> on EzValidator<T> {
 
   /// Transform the value before running the validation
   /// [transformFunction] is the function to run on the value
-  EzValidator<T> transform(T Function(T) transformFunction) {
+  EzValidator<T> transform(T Function(dynamic) transformFunction) {
     transformationFunction = transformFunction;
     return this;
   }
 }
 
-extension OptionalValidation<T> on T? {
+extension OptionalValidation on Object? {
   bool get isNullOrEmpty {
     if (this == null) {
       return true;

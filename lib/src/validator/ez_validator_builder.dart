@@ -3,8 +3,7 @@ import 'package:ez_validator/src/validator/ez_locale.dart';
 
 import 'ez_validator_locale.dart';
 
-typedef ValidationCallback<T> = String? Function(T? value,
-    [Map<dynamic, dynamic>? ref]);
+typedef ValidationCallback<T> = String? Function(Object? value, [Map<dynamic, dynamic>? ref]);
 
 class EzValidator<T> {
   EzValidator({
@@ -29,12 +28,12 @@ class EzValidator<T> {
   /// for example: `trim` a string
   /// or `parse` a string to a `DateTime`
   /// or `cast` a `String` to `int` ....
-  T Function(T)? transformationFunction;
+  T Function(dynamic)? transformationFunction;
 
-  final List<ValidationCallback<T>> validations = [];
+  final List<ValidationCallback<dynamic>> validations = [];
   static EzLocale globalLocale = const DefaultLocale();
 
-  EzValidator<T> addValidation(ValidationCallback<T> validator) {
+  EzValidator<T> addValidation(ValidationCallback<dynamic> validator) {
     validations.add(validator);
     return this;
   }
@@ -44,7 +43,7 @@ class EzValidator<T> {
     globalLocale = locale;
   }
 
-  String? _test(T? value, [Map<dynamic, dynamic>? ref]) {
+  String? _test(Object? value, [Map<dynamic, dynamic>? ref]) {
     if (transformationFunction != null && value != null) {
       value = transformationFunction!(value);
     }
@@ -54,14 +53,9 @@ class EzValidator<T> {
     }
 
     for (var validate in validations) {
-      if (optional && value.isNullOrEmpty) {
-        return null;
-      }
-
+      if (optional && value.isNullOrEmpty) return null;
       final result = validate(value, ref);
-      if (result != null) {
-        return result;
-      }
+      if (result != null) return result;
     }
     return null;
   }

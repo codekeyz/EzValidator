@@ -63,8 +63,7 @@ class EzSchema {
           if (!form.containsKey(key) || form[key] is! Map<String, dynamic>) {
             data[key] = value._populateDefaultValues();
           } else {
-            data[key] =
-                value._fillSchemaIfNeeded(form[key] as Map<String, dynamic>);
+            data[key] = value._fillSchemaIfNeeded(form[key] as Map<String, dynamic>);
           }
         }
       });
