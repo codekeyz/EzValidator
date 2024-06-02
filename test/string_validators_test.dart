@@ -1,4 +1,4 @@
-import 'package:ez_validator/ez_validator.dart';
+import 'package:ez_validator_dart/ez_validator.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -148,7 +148,7 @@ void main() {
         "https://note-slayer.com/",
         "https://pub.dev/",
         "https://www.google.com/",
-        "https://www.google.com/search?q=ez_validator&oq=ez_validator&aqs=chrome..69i57j0l7.1771j0j7&sourceid=chrome&ie=UTF-8",
+        "https://www.google.com/search?q=ez_validator_dart&oq=ez_validator_dart&aqs=chrome..69i57j0l7.1771j0j7&sourceid=chrome&ie=UTF-8",
       ];
       for (var actual in validUrls) {
         expect(urlvalidator(actual), isNull, reason: 'Url Valid: $actual');

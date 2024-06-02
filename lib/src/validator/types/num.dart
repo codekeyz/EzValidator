@@ -1,4 +1,4 @@
-import 'package:ez_validator/src/validator/ez_validator_builder.dart';
+import 'package:ez_validator_dart/src/validator/ez_validator_builder.dart';
 
 extension NumValidatorExtensions<T> on EzValidator<T> {
   /// Checks if the value is a minimum of [min]
@@ -18,7 +18,9 @@ extension NumValidatorExtensions<T> on EzValidator<T> {
   /// [message] is the message to return if the validation fails
   EzValidator<T> max(num max, [String? message]) => addValidation((v, [_]) {
         if (v is num) {
-          return v > max ? message ?? EzValidator.globalLocale.max('$v', max, label) : null;
+          return v > max
+              ? message ?? EzValidator.globalLocale.max('$v', max, label)
+              : null;
         }
         return 'Invalid type for min comparison';
       });
@@ -27,7 +29,9 @@ extension NumValidatorExtensions<T> on EzValidator<T> {
   /// [message] is the message to return if the validation fails
   EzValidator<T> positive([String? message]) => addValidation((v, [_]) {
         if (v is num) {
-          return v < 0 ? message ?? EzValidator.globalLocale.positive('$v', label) : null;
+          return v < 0
+              ? message ?? EzValidator.globalLocale.positive('$v', label)
+              : null;
         }
         return 'Invalid type for min comparison';
       });
@@ -36,7 +40,9 @@ extension NumValidatorExtensions<T> on EzValidator<T> {
   /// [message] is the message to return if the validation fails
   EzValidator<T> negative([String? message]) => addValidation((v, [_]) {
         if (v is num) {
-          return v > 0 ? message ?? EzValidator.globalLocale.negative('$v', label) : null;
+          return v > 0
+              ? message ?? EzValidator.globalLocale.negative('$v', label)
+              : null;
         }
         return 'Invalid type for min comparison';
       });
@@ -47,7 +53,9 @@ extension NumValidatorExtensions<T> on EzValidator<T> {
         if (v is num) {
           return null;
         }
-        return num.tryParse(v.toString()) != null ? null : message ?? EzValidator.globalLocale.number('$v', label);
+        return num.tryParse(v.toString()) != null
+            ? null
+            : message ?? EzValidator.globalLocale.number('$v', label);
       });
 
   /// Checks if the value is an integer
@@ -57,7 +65,9 @@ extension NumValidatorExtensions<T> on EzValidator<T> {
           return null;
         }
 
-        return int.tryParse(v.toString()) != null ? null : message ?? EzValidator.globalLocale.isInt('$v', label);
+        return int.tryParse(v.toString()) != null
+            ? null
+            : message ?? EzValidator.globalLocale.isInt('$v', label);
       });
 
   /// Checks if the value is a double
@@ -75,7 +85,9 @@ extension NumValidatorExtensions<T> on EzValidator<T> {
           return message ?? EzValidator.globalLocale.isDouble('$v', label);
         }
 
-        return double.tryParse(v.toString()) != null ? null : message ?? EzValidator.globalLocale.isDouble('$v', label);
+        return double.tryParse(v.toString()) != null
+            ? null
+            : message ?? EzValidator.globalLocale.isDouble('$v', label);
       });
 
   /// Checks if the value is not a number
@@ -84,6 +96,8 @@ extension NumValidatorExtensions<T> on EzValidator<T> {
         if (v is num) {
           return message ?? EzValidator.globalLocale.notNumber('$v', label);
         }
-        return num.tryParse(v.toString()) == null ? null : message ?? EzValidator.globalLocale.notNumber('$v', label);
+        return num.tryParse(v.toString()) == null
+            ? null
+            : message ?? EzValidator.globalLocale.notNumber('$v', label);
       });
 }

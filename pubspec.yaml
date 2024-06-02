@@ -1,5 +1,5 @@
-name: ez_validator
-description: Dead simple field/object schema validation for flutter,EzValidator api is inspired by Yup
+name: ez_validator_dart
+description: Dead simple field/object schema validation for dart,EzValidator api is inspired by Yup
 version: 0.3.1
 homepage: https://github.com/X-SLAYER/EzValidator
 documentation: https://github.com/X-SLAYER/EzValidator#methods

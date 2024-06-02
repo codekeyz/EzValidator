@@ -17,7 +17,7 @@ Add EzValidator to your pubspec:
 
 ```yaml
 dependencies:
-  ez_validator: any # or the latest version on Pub
+  ez_validator_dart: any # or the latest version on Pub
 ```
 
 ## Getting Started

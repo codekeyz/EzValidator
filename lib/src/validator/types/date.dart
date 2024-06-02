@@ -1,4 +1,4 @@
-import 'package:ez_validator/src/validator/ez_validator_builder.dart';
+import 'package:ez_validator_dart/src/validator/ez_validator_builder.dart';
 
 extension DateValidatorExtensions<T> on EzValidator<T> {
   /// Checks if the value is a date

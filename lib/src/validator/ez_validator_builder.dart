@@ -1,9 +1,10 @@
-import 'package:ez_validator/src/validator/types/validators.dart';
-import 'package:ez_validator/src/validator/ez_locale.dart';
+import 'package:ez_validator_dart/src/validator/types/validators.dart';
+import 'package:ez_validator_dart/src/validator/ez_locale.dart';
 
 import 'ez_validator_locale.dart';
 
-typedef ValidationCallback<T> = String? Function(Object? value, [Map<dynamic, dynamic>? ref]);
+typedef ValidationCallback<T> = String? Function(Object? value,
+    [Map<dynamic, dynamic>? ref]);
 
 class EzValidator<T> {
   EzValidator({
